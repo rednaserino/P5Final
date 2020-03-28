@@ -86,4 +86,5 @@ export class ApiService {
   }
 
   addUser(user: { name: string }) {}
+  addNote(note: { note: string }) {}
 }

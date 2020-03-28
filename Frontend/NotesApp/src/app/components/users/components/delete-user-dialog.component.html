@@ -2,7 +2,9 @@
   <h1 mat-dialog-title>Delete User</h1>
 
   <div>
-    <p>You are about to delete "{{ user?.name }}".</p>
+    <p>
+      You are about to delete "{{ user?.name }}" and all of the user's notes.
+    </p>
     <mat-slide-toggle #confirmationToggle>Are you sure?</mat-slide-toggle>
   </div>
 

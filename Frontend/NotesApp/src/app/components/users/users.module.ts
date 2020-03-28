@@ -19,6 +19,10 @@ import { FormsModule } from "@angular/forms";
     DeleteUserDialogComponent
   ],
   imports: [CommonModule, UsersRoutingModule, MaterialModule, FormsModule],
-  entryComponents: [NewUserDialogComponent, DeleteUserDialogComponent]
+  entryComponents: [
+    NewUserDialogComponent,
+    DeleteUserDialogComponent,
+    NewNoteDialogComponent
+  ]
 })
 export class UsersModule {}

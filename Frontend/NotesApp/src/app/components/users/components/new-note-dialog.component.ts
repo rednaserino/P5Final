@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 
 @Component({
-  selector: 'app-new-note-dialog',
-  templateUrl: './new-note-dialog.component.html',
-  styleUrls: ['./new-note-dialog.component.sass']
+  selector: "app-new-note-dialog",
+  templateUrl: "./new-note-dialog.component.html",
+  styleUrls: ["./new-note-dialog.component.sass"]
 })
-export class NewNoteDialogComponent implements OnInit {
+export class NewNoteDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<NewNoteDialogComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { note: string }
+  ) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  onNoClick(): void {
+    this.dialogRef.close();
   }
-
 }

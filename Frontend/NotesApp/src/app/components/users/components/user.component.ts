@@ -4,15 +4,17 @@ import { MatDialog } from "@angular/material";
 import { Observable } from "rxjs";
 import { ApiService } from "src/app/services/api.service";
 import { DeleteUserDialogComponent } from "./delete-user-dialog.component";
+import { NewNoteDialogComponent } from "./new-note-dialog.component";
 
 @Component({
   selector: "app-user",
   templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.sass"]
+  styleUrls: ["./user.component.scss"]
 })
 export class UserComponent implements OnInit {
   routeId: number;
   user$: Observable<{ id: number; name: string; notes: Array<any> }>;
+  newNote: { note: string };
 
   constructor(
     private route: ActivatedRoute,
@@ -38,5 +40,23 @@ export class UserComponent implements OnInit {
         this.apiService.deleteUserById(this.routeId);
       }
     });
+  }
+  openAddNoteDialog(): void {
+    const dialogRef = this.dialog.open(NewNoteDialogComponent, {
+      width: "250px",
+      data: { note: this.newNote }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.newNote = {
+          note: result.note
+        };
+        this.saveNewNote();
+      }
+    });
+  }
+
+  saveNewNote() {
+    this.apiService.addNote(this.newNote);
   }
 }
