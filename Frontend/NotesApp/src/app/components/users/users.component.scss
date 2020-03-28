@@ -1,0 +1,25 @@
+.user-card {
+  margin: 0 auto;
+  width: 80%;
+  padding: 5px;
+  display: block;
+}
+.container {
+  margin: 10px 0px;
+  display: flex;
+  justify-content: center;
+}
+.card-container {
+  margin: 10px 0px;
+  display: block;
+}
+button {
+  margin-left: 10px;
+}
+
+mat-card-title {
+  margin-top: 8px;
+}
+mat-card-subtitle {
+  margin-bottom: 8px;
+}

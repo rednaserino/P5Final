@@ -1,0 +1,15 @@
+<div class="container">
+  <button mat-raised-button (click)="openDialog()">Add user</button>
+</div>
+
+<div
+  class="card-container"
+  *ngFor="let user of users"
+  routerLink="./{{ user.id }}"
+>
+  <mat-card class="user-card">
+    <mat-card-header>
+      <mat-card-title>{{ user?.name }}</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>

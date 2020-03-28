@@ -1,0 +1,19 @@
+<ng-container *ngIf="data.user$ | async; let user">
+  <h1 mat-dialog-title>Delete User</h1>
+
+  <div>
+    <p>You are about to delete "{{ user?.name }}".</p>
+    <mat-slide-toggle #confirmationToggle>Are you sure?</mat-slide-toggle>
+  </div>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+    <button
+      mat-button
+      [disabled]="!confirmationToggle.checked"
+      [mat-dialog-close]="true"
+    >
+      Delete
+    </button>
+  </mat-dialog-actions>
+</ng-container>
