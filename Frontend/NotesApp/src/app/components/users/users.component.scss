@@ -13,6 +13,10 @@
   margin: 10px 0px;
   display: block;
 }
+.card-container:focus {
+  outline: none;
+}
+
 button {
   margin-left: 10px;
 }

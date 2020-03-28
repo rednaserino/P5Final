@@ -84,4 +84,6 @@ export class ApiService {
     //   this.router.navigateByUrl('/users');
     // });
   }
+
+  addUser(user: { name: string }) {}
 }
