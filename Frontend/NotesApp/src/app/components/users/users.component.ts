@@ -24,7 +24,8 @@ export class UsersComponent implements OnInit {
   }
 
   saveNewUser() {
-    this.apiService.addUser(this.newUser);
+    let newUser$ = this.apiService.addUser(this.newUser.name);
+    newUser$.subscribe(() => this.getData());
   }
 
   openDialog(): void {

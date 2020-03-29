@@ -47,7 +47,10 @@ export class UserComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.apiService.deleteUserById(this.routeId);
+        let delete$ = this.apiService.deleteUserByName(this.username);
+        delete$.subscribe(r => {
+          this.router.navigateByUrl("/users");
+        });
       }
     });
   }
@@ -65,6 +68,7 @@ export class UserComponent implements OnInit {
   }
 
   saveNewNote() {
-    this.apiService.addNote(this.newNote);
+    let newNote$ = this.apiService.addNote(this.username, this.newNote);
+    newNote$.subscribe(() => this.getData());
   }
 }

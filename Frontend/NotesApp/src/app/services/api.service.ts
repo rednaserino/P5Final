@@ -39,14 +39,17 @@ export class ApiService {
     return this.http.get(`${this.apiPath}/notes?name=${name}`);
   }
 
-  deleteUserById(id: number): void {
-    // let delete$ = this.http.delete(`${this.usersApiPath}/${id}`);
-    // delete$.subscribe(r => {
-    //   console.log(r);
-    //   this.router.navigateByUrl('/users');
-    // });
+  deleteUserByName(name: string) {
+    return this.http.get(`${this.apiPath}/remove?name=${name}`);
   }
 
-  addUser(user: { name: string }) {}
-  addNote(note: string) {}
+  addUser(name: string) {
+    return this.http.get(`${this.apiPath}/add?name=${name}`);
+  }
+
+  addNote(name: string, note: string) {
+    return this.http.get(
+      `${this.apiPath}/addnote?name=${name}&content=${note}`
+    );
+  }
 }
