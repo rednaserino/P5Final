@@ -10,7 +10,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 export class DeleteUserDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DeleteUserDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { user$: Observable<any> }
+    @Inject(MAT_DIALOG_DATA) public data: { username: string }
   ) {}
 
   onNoClick(): void {

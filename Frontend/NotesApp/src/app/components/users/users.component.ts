@@ -9,7 +9,7 @@ import { NewUserDialogComponent } from "./components/new-user-dialog.component";
   styleUrls: ["./users.component.scss"]
 })
 export class UsersComponent implements OnInit {
-  users: Array<{ id: number; name: string; notes: Array<string> }>;
+  users: Array<{ id: number; name: string }>;
   newUser: { name: string };
 
   constructor(private apiService: ApiService, public dialog: MatDialog) {}
@@ -19,7 +19,8 @@ export class UsersComponent implements OnInit {
   }
 
   getData() {
-    this.users = this.apiService.getUsers();
+    let users$ = this.apiService.getUsers();
+    users$.subscribe(r => (this.users = r as any));
   }
 
   saveNewUser() {

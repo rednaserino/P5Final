@@ -1,9 +1,9 @@
-<ng-container *ngIf="data.user$ | async; let user">
+<ng-container>
   <h1 mat-dialog-title>Delete User</h1>
 
   <div>
     <p>
-      You are about to delete "{{ user?.name }}" and all of the user's notes.
+      You are about to delete "{{ data.username }}" and all of the user's notes.
     </p>
     <mat-slide-toggle #confirmationToggle>Are you sure?</mat-slide-toggle>
   </div>

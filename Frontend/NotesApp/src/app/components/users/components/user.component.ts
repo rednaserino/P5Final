@@ -13,8 +13,10 @@ import { NewNoteDialogComponent } from "./new-note-dialog.component";
 })
 export class UserComponent implements OnInit {
   routeId: number;
-  user$: Observable<{ id: number; name: string; notes: Array<any> }>;
-  newNote: { note: string };
+  users: Array<{ id: number; name: string }>;
+  username: string;
+  notes: Array<{ id: number; content: string; userId: number }>;
+  newNote: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,15 +26,23 @@ export class UserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.routeId = parseInt(this.route.snapshot.paramMap.get("id"));
     this.getData();
   }
 
   getData() {
-    this.user$ = this.apiService.getUserById(this.routeId);
+    let users$ = this.apiService.getUsers();
+    let notes$;
+    users$.subscribe(r => {
+      this.users = r as any;
+      this.username = r.find(x => x.id === this.routeId).name;
+      notes$ = this.apiService.getNotesByUserName(this.username);
+      notes$.subscribe(s => (this.notes = s));
+    });
   }
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
-      data: { user$: this.user$ }
+      data: { username: this.username }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -48,9 +58,7 @@ export class UserComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.newNote = {
-          note: result.note
-        };
+        this.newNote = result.note;
         this.saveNewNote();
       }
     });

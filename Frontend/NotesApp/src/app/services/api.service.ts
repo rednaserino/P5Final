@@ -1,64 +1,22 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class ApiService {
+  apiPath = environment.apiBaseUrl;
+  users: Array<{ id: number; name: string }> = [];
+
   constructor(private http: HttpClient) {}
 
-  getUsers = () => {
-    return [
-      {
-        id: 1,
-        name: "Igor",
-        notes: [
-          "Take a walk",
-          "X-marks the spot",
-          "The square roots of 16 are 4 & -4"
-        ]
-      },
-      {
-        id: 2,
-        name: "Wolfie",
-        notes: [
-          "Take a walk",
-          "X-marks the spot",
-          "The square roots of 16 are 4 & -4"
-        ]
-      },
-      {
-        id: 3,
-        name: "Roeland",
-        notes: [
-          "Take a walk",
-          "X-marks the spot",
-          "The square roots of 16 are 4 & -4"
-        ]
-      },
-      {
-        id: 4,
-        name: "Nick",
-        notes: [
-          "Take a walk",
-          "X-marks the spot",
-          "The square roots of 16 are 4 & -4"
-        ]
-      },
-      {
-        id: 5,
-        name: "Susky",
-        notes: [
-          "Take a walk",
-          "X-marks the spot",
-          "The square roots of 16 are 4 & -4"
-        ]
-      }
-    ];
-
-    // return this.http.get("https://jouw-glitch-url/users");
-  };
+  getUsers(): Observable<Array<{ id: number; name: string }>> {
+    return this.http.get(`${this.apiPath}/users`) as Observable<
+      Array<{ id: number; name: string }>
+    >;
+  }
 
   getUserById(
     id: number
@@ -77,6 +35,10 @@ export class ApiService {
     });
   }
 
+  getNotesByUserName(name: string) {
+    return this.http.get(`${this.apiPath}/notes?name=${name}`);
+  }
+
   deleteUserById(id: number): void {
     // let delete$ = this.http.delete(`${this.usersApiPath}/${id}`);
     // delete$.subscribe(r => {
@@ -86,5 +48,5 @@ export class ApiService {
   }
 
   addUser(user: { name: string }) {}
-  addNote(note: { note: string }) {}
+  addNote(note: string) {}
 }

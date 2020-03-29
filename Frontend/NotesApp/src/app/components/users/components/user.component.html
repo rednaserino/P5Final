@@ -1,9 +1,9 @@
-<mat-list *ngIf="user$ | async; let user">
+<mat-list>
   <mat-list-item>
-    <h1>{{ user?.name }}</h1>
+    <h1>{{ username }}</h1>
   </mat-list-item>
-  <mat-list-item *ngFor="let note of user?.notes">
-    Note: {{ note }}
+  <mat-list-item *ngFor="let note of notes">
+    {{ note.id }}: {{ note.content }}
   </mat-list-item>
 
   <mat-list-item>
