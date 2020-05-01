@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
+import { categories } from "../components/users/types/categories";
 
 @Injectable({
   providedIn: "root",
@@ -47,18 +48,20 @@ export class ApiService {
     return this.http.get(`${this.apiPath}/notes?name=${name}`);
   }
 
-  addNote(userId: number, note: string) {
+  addNote(userId: number, note: string, category: categories) {
     return this.http.post(`${this.apiPath}/notes`, {
       userId: userId,
       content: note,
+      category: category,
     });
   }
 
-  editNote(note: string, userId: number, noteId: number) {
+  editNote(note: string, userId: number, noteId: number, category: categories) {
     return this.http.put(`${this.apiPath}/notes`, {
       noteId: noteId,
       userId: userId,
       content: note,
+      category: category,
     });
   }
 

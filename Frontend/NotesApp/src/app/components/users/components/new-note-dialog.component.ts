@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { categories } from "../types/categories";
 
 @Component({
   selector: "app-new-note-dialog",
@@ -8,11 +9,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 })
 export class NewNoteDialogComponent {
   editmode: boolean;
+  categories = categories;
+  categoryOptions = [
+    { display: "Private", value: categories.Private },
+    { display: "Work", value: categories.Work },
+    { display: "High priority", value: categories.HighPriority },
+    { display: "Low priority", value: categories.LowPriority },
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<NewNoteDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { note: string }
+    public data: { note: string; category: categories }
   ) {}
 
   ngOnInit() {

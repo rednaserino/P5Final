@@ -5,6 +5,18 @@
     <mat-label>Note</mat-label>
     <input matInput [(ngModel)]="data.note" />
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="data.category">
+      <mat-option
+        *ngFor="let category of categoryOptions"
+        [value]="category.value"
+      >
+        {{ category.display }}
+      </mat-option>
+    </mat-select>
+    <!-- <input matInput [(ngModel)]="data.category" /> -->
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

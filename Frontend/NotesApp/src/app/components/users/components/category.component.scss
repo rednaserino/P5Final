@@ -1,0 +1,42 @@
+.res-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  line-height: 0;
+  background: #c0c0c0;
+  // background: #2661c0;
+  position: relative;
+  left: 8px;
+  top: 8px;
+}
+.res-circle:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.circle-txt {
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
+  text-align: center;
+  font-family: arial, sans-serif;
+  font-size: small;
+  font-weight: bold;
+  color: white;
+}
+#container {
+  height: 40px;
+  width: 40px;
+}
+.high-priority {
+  background: darkred;
+}
+.low-priority {
+  background: darkseagreen;
+}
+.work {
+  background: goldenrod;
+}
+.private {
+  background: darkgreen;
+}

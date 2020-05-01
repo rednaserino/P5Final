@@ -4,10 +4,13 @@
   </mat-list-item>
   <mat-list-item *ngFor="let note of notes">
     <div class="li-flex">
-      <div>
+      <div class="ri-flex">
+        <notes-category
+          [category]="getCategoryType(note.category)"
+        ></notes-category>
         {{ note.content }}
       </div>
-      <div>
+      <div class="ri-flex">
         <button
           mat-icon-button
           (click)="openEditNoteDialog(note.content, note.id, note.userId)"

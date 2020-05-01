@@ -9,6 +9,7 @@ import { DeleteUserDialogComponent } from "./components/delete-user-dialog.compo
 import { UsersComponent } from "./users.component";
 import { MaterialModule } from "src/app/shared/material.module";
 import { FormsModule } from "@angular/forms";
+import { CategoryComponent } from './components/category.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from "@angular/forms";
     UsersComponent,
     NewUserDialogComponent,
     NewNoteDialogComponent,
-    DeleteUserDialogComponent
+    DeleteUserDialogComponent,
+    CategoryComponent
   ],
   imports: [CommonModule, UsersRoutingModule, MaterialModule, FormsModule],
   entryComponents: [

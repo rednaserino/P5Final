@@ -1,0 +1,15 @@
+<div id="container">
+  <div
+    class="res-circle"
+    [matTooltip]="category?.display"
+    matTooltipPosition="above"
+    [class.high-priority]="category?.value === categories.HighPriority"
+    [class.low-priority]="category?.value === categories.LowPriority"
+    [class.work]="category?.value === categories.Work"
+    [class.private]="category?.value === categories.Private"
+  >
+    <div class="circle-txt">
+      {{ category?.display?.substring(0, 1).toUpperCase() }}
+    </div>
+  </div>
+</div>
