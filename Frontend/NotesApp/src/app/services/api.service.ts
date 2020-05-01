@@ -4,7 +4,7 @@ import { Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ApiService {
   apiPath = environment.apiBaseUrl;
@@ -18,18 +18,26 @@ export class ApiService {
     >;
   }
 
+  addUser(name: string) {
+    return this.http.post(`${this.apiPath}/users`, { name: name });
+  }
+
+  deleteUser(userId: number) {
+    return this.http.delete(`${this.apiPath}/users?userId=${userId}`);
+  }
+
   getUserById(
     id: number
   ): Observable<{ id: number; name: string; notes: Array<any> }> {
-    return new Observable(subscriber => {
+    return new Observable((subscriber) => {
       subscriber.next({
         id: 1,
         name: "Susan",
         notes: [
           "Take a walk",
           "X-marks the spot",
-          "The square roots of 16 are 4 & -4"
-        ]
+          "The square roots of 16 are 4 & -4",
+        ],
       });
       subscriber.complete();
     });
@@ -39,17 +47,22 @@ export class ApiService {
     return this.http.get(`${this.apiPath}/notes?name=${name}`);
   }
 
-  deleteUserByName(name: string) {
-    return this.http.get(`${this.apiPath}/remove?name=${name}`);
+  addNote(userId: number, note: string) {
+    return this.http.post(`${this.apiPath}/notes`, {
+      userId: userId,
+      content: note,
+    });
   }
 
-  addUser(name: string) {
-    return this.http.get(`${this.apiPath}/add?name=${name}`);
-  }
-
-  addNote(name: string, note: string) {
-    return this.http.get(
-      `${this.apiPath}/addnote?name=${name}&content=${note}`
+  deleteNote(userId: number, noteId: number) {
+    return this.http.delete(
+      `${this.apiPath}/notes?userId=${userId}&noteId=${noteId}`
     );
   }
+
+  // addNote(name: string, note: string) {
+  //   return this.http.get(
+  //     `${this.apiPath}/addnote?name=${name}&content=${note}`
+  //   );
+  // }
 }

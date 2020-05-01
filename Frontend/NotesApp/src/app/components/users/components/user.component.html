@@ -3,13 +3,26 @@
     <h1>{{ username }}</h1>
   </mat-list-item>
   <mat-list-item *ngFor="let note of notes">
-    {{ note.content }}
+    <div class="li-flex">
+      <div>
+        {{ note.content }}
+      </div>
+      <div>
+        <button mat-icon-button>
+          <mat-icon svgIcon="pencil"></mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon svgIcon="delete-forever"></mat-icon>
+        </button>
+      </div>
+    </div>
   </mat-list-item>
-
   <mat-list-item>
-    <button mat-raised-button (click)="openAddNoteDialog()">Add note</button>
-  </mat-list-item>
-  <mat-list-item>
-    <button mat-raised-button (click)="openDeleteDialog()">Delete user</button>
+    <div class="bu-flex">
+      <button mat-raised-button (click)="openAddNoteDialog()">Add note</button>
+      <button mat-raised-button (click)="openDeleteDialog()">
+        Delete user
+      </button>
+    </div>
   </mat-list-item>
 </mat-list>

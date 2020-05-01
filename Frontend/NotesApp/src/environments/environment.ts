@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://rednaserino-backend-example.glitch.me"
+  apiBaseUrl: "https://p5finalbackend.glitch.me",
 };
 
 /*

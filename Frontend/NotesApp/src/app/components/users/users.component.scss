@@ -4,11 +4,6 @@
   padding: 5px;
   display: block;
 }
-.container {
-  margin: 10px 0px;
-  display: flex;
-  justify-content: center;
-}
 .card-container {
   margin: 10px 0px;
   display: block;
@@ -26,4 +21,14 @@ mat-card-title {
 }
 mat-card-subtitle {
   margin-bottom: 8px;
+}
+#button-container {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#spacer {
+  height: 24px;
 }

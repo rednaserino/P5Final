@@ -9,7 +9,7 @@ import { NewNoteDialogComponent } from "./new-note-dialog.component";
 @Component({
   selector: "app-user",
   templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.scss"]
+  styleUrls: ["./user.component.scss"],
 })
 export class UserComponent implements OnInit {
   routeId: number;
@@ -33,22 +33,22 @@ export class UserComponent implements OnInit {
   getData() {
     let users$ = this.apiService.getUsers();
     let notes$;
-    users$.subscribe(r => {
+    users$.subscribe((r) => {
       this.users = r as any;
-      this.username = r.find(x => x.id === this.routeId).name;
+      this.username = r.find((x) => x.id === this.routeId).name;
       notes$ = this.apiService.getNotesByUserName(this.username);
-      notes$.subscribe(s => (this.notes = s));
+      notes$.subscribe((s) => (this.notes = s));
     });
   }
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
-      data: { username: this.username }
+      data: { username: this.username },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        let delete$ = this.apiService.deleteUserByName(this.username);
-        delete$.subscribe(r => {
+        let delete$ = this.apiService.deleteUser(this.routeId);
+        delete$.subscribe((r) => {
           this.router.navigateByUrl("/users");
         });
       }
@@ -57,9 +57,9 @@ export class UserComponent implements OnInit {
   openAddNoteDialog(): void {
     const dialogRef = this.dialog.open(NewNoteDialogComponent, {
       width: "250px",
-      data: { note: this.newNote }
+      data: { note: this.newNote },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.newNote = result.note;
         this.saveNewNote();
@@ -68,7 +68,7 @@ export class UserComponent implements OnInit {
   }
 
   saveNewNote() {
-    let newNote$ = this.apiService.addNote(this.username, this.newNote);
+    let newNote$ = this.apiService.addNote(this.routeId, this.newNote);
     newNote$.subscribe(() => this.getData());
   }
 }

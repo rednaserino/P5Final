@@ -1,7 +1,4 @@
-<div class="container">
-  <button mat-raised-button (click)="openDialog()">Add user</button>
-</div>
-
+<div id="spacer"></div>
 <div
   class="card-container"
   *ngFor="let user of users"
@@ -12,4 +9,9 @@
       <mat-card-title>{{ user?.name }}</mat-card-title>
     </mat-card-header>
   </mat-card>
+</div>
+<div id="button-container">
+  <button mat-fab color (click)="openDialog()">
+    <mat-icon svgIcon="plus">+</mat-icon>
+  </button>
 </div>
