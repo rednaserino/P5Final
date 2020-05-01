@@ -11,7 +11,7 @@
         <button mat-icon-button>
           <mat-icon svgIcon="pencil"></mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="deleteNote(note.id, note.userId)">
           <mat-icon svgIcon="delete-forever"></mat-icon>
         </button>
       </div>

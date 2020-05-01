@@ -71,4 +71,9 @@ export class UserComponent implements OnInit {
     let newNote$ = this.apiService.addNote(this.routeId, this.newNote);
     newNote$.subscribe(() => this.getData());
   }
+
+  deleteNote(noteId: number, userId: number) {
+    let result$ = this.apiService.deleteNote(userId, noteId);
+    result$.subscribe(() => this.getData());
+  }
 }
