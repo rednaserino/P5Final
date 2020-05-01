@@ -8,7 +8,10 @@
         {{ note.content }}
       </div>
       <div>
-        <button mat-icon-button>
+        <button
+          mat-icon-button
+          (click)="openEditNoteDialog(note.content, note.id, note.userId)"
+        >
           <mat-icon svgIcon="pencil"></mat-icon>
         </button>
         <button mat-icon-button (click)="deleteNote(note.id, note.userId)">

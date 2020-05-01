@@ -54,6 +54,14 @@ export class ApiService {
     });
   }
 
+  editNote(note: string, userId: number, noteId: number) {
+    return this.http.put(`${this.apiPath}/notes`, {
+      noteId: noteId,
+      userId: userId,
+      content: note,
+    });
+  }
+
   deleteNote(userId: number, noteId: number) {
     return this.http.delete(
       `${this.apiPath}/notes?userId=${userId}&noteId=${noteId}`

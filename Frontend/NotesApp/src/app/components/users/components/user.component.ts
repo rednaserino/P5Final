@@ -66,6 +66,19 @@ export class UserComponent implements OnInit {
       }
     });
   }
+  openEditNoteDialog(note: string, noteId: number, userId: number): void {
+    const dialogRef = this.dialog.open(NewNoteDialogComponent, {
+      width: "250px",
+      data: { note: note },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        let content = result.note;
+        let result$ = this.apiService.editNote(content, userId, noteId);
+        result$.subscribe(() => this.getData());
+      }
+    });
+  }
 
   saveNewNote() {
     let newNote$ = this.apiService.addNote(this.routeId, this.newNote);
