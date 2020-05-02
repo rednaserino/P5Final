@@ -1,3 +1,19 @@
+<div id="filter-container">
+  <mat-form-field>
+    <mat-select placeholder="Filter Category">
+      <mat-option>No filter</mat-option>
+      <mat-option
+        *ngFor="let category of categoryOptions"
+        [value]="category.value"
+      >
+        {{ category.display }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Filter Content" />
+  </mat-form-field>
+</div>
 <mat-list *ngIf="username">
   <mat-list-item>
     <h1>{{ username }}</h1>

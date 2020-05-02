@@ -25,6 +25,12 @@ export class UserComponent implements OnInit {
   }>;
   newNote: string;
   newNoteCategory: categories;
+  categoryOptions = [
+    { display: "Private", value: categories.Private },
+    { display: "Work", value: categories.Work },
+    { display: "High priority", value: categories.HighPriority },
+    { display: "Low priority", value: categories.LowPriority },
+  ];
 
   constructor(
     private route: ActivatedRoute,
