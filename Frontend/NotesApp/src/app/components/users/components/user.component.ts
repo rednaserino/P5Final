@@ -154,12 +154,17 @@ export class UserComponent implements OnInit {
 
   filterNotes() {
     this.filteredNotes = this.notes;
-    this.filteredNotes = this.categoryFilter
-      ? this.filteredNotes.filter((n) => n.category === this.categoryFilter)
-      : this.filteredNotes;
+    this.filteredNotes =
+      this.categoryFilter !== null && this.categoryFilter !== undefined
+        ? this.filteredNotes.filter((n) => n.category === this.categoryFilter)
+        : this.filteredNotes;
 
     this.filteredNotes = this.contentFilter
-      ? this.filteredNotes.filter((n) => n.content.includes(this.contentFilter))
+      ? this.filteredNotes.filter((n) =>
+          n.content
+            .toLocaleUpperCase()
+            .includes(this.contentFilter.toLocaleUpperCase())
+        )
       : this.filteredNotes;
   }
 }
