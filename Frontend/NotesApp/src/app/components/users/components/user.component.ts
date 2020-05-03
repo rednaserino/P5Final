@@ -31,6 +31,14 @@ export class UserComponent implements OnInit {
     { display: "High priority", value: categories.HighPriority },
     { display: "Low priority", value: categories.LowPriority },
   ];
+  filteredNotes: Array<{
+    id: number;
+    content: string;
+    userId: number;
+    category: categories;
+  }>;
+  categoryFilter: categories;
+  contentFilter: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,7 +59,10 @@ export class UserComponent implements OnInit {
       this.users = r as any;
       this.username = r.find((x) => x.id === this.routeId).name;
       notes$ = this.apiService.getNotesByUserName(this.username);
-      notes$.subscribe((s) => (this.notes = s));
+      notes$.subscribe((s) => {
+        this.notes = s;
+        this.filterNotes();
+      });
     });
   }
   openDeleteDialog(): void {
@@ -139,5 +150,16 @@ export class UserComponent implements OnInit {
     }
 
     return c;
+  }
+
+  filterNotes() {
+    this.filteredNotes = this.notes;
+    this.filteredNotes = this.categoryFilter
+      ? this.filteredNotes.filter((n) => n.category === this.categoryFilter)
+      : this.filteredNotes;
+
+    this.filteredNotes = this.contentFilter
+      ? this.filteredNotes.filter((n) => n.content.includes(this.contentFilter))
+      : this.filteredNotes;
   }
 }

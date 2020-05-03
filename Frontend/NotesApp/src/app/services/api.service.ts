@@ -48,6 +48,12 @@ export class ApiService {
     return this.http.get(`${this.apiPath}/notes?name=${name}`);
   }
 
+  getNotesCategoryFiltered(userId: number, category: categories) {
+    return this.http.get(
+      `${this.apiPath}/notes?userId=${userId}&category=${category}`
+    );
+  }
+
   addNote(userId: number, note: string, category: categories) {
     return this.http.post(`${this.apiPath}/notes`, {
       userId: userId,

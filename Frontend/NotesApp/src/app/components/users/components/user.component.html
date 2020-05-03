@@ -1,6 +1,10 @@
 <div id="filter-container">
   <mat-form-field>
-    <mat-select placeholder="Filter Category">
+    <mat-select
+      placeholder="Filter Category"
+      [(ngModel)]="categoryFilter"
+      (ngModelChange)="filterNotes()"
+    >
       <mat-option>No filter</mat-option>
       <mat-option
         *ngFor="let category of categoryOptions"
@@ -11,14 +15,20 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Filter Content" />
+    <input
+      matInput
+      placeholder="Filter Content"
+      [(ngModel)]="contentFilter"
+      (change)="filterNotes()"
+      (keyup)="filterNotes()"
+    />
   </mat-form-field>
 </div>
 <mat-list *ngIf="username">
   <mat-list-item>
     <h1>{{ username }}</h1>
   </mat-list-item>
-  <mat-list-item *ngFor="let note of notes">
+  <mat-list-item *ngFor="let note of filteredNotes">
     <div class="li-flex">
       <div class="ri-flex">
         <notes-category
